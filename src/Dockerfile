@@ -1,12 +1,13 @@
-#Dockerfile cration
+## Dockerfile cration
 FROM node:22 AS build
 
 WORKDIR /usr/app
 
-COPY . .
+COPY ./ /usr/app
 
 RUN npm install
-RUN npm run test
+RUN npm run lint
+RUN npm run test:cov
 RUN npm run build
 
 FROM node:22-alpine
